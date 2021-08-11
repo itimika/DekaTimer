@@ -12,6 +12,7 @@ class TimerModel with ChangeNotifier {
   late DateTime _time;
   late CollectionReference _timers;
   late String userId;
+  String _name = 'タイマー';
 
   int _h = 0;
   int _m = 0;
@@ -20,6 +21,8 @@ class TimerModel with ChangeNotifier {
   get h => _h;
   get m => _m;
   get s => _s;
+
+  set name(val) => _name = val;
 
   CollectionReference get timers => _timers;
 
@@ -67,6 +70,7 @@ class TimerModel with ChangeNotifier {
   bool addTimer() {
     if (_m != 0 || _s != 0) {
       _timers.add({
+        'name': _name,
         'minute': _m,
         'second': _s,
         'background_color': '',
