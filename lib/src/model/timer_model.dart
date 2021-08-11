@@ -17,6 +17,7 @@ class TimerModel with ChangeNotifier {
   get h => _h;
   get m => _m;
   get s => _s;
+
   CollectionReference get timers => _timers;
 
   String timerStr() => DateFormat('mm:ss').format(_time);
@@ -45,7 +46,7 @@ class TimerModel with ChangeNotifier {
   }
 
   bool addTimer() {
-    if (_m != 0 && _s != 0) {
+    if (_m != 0 || _s != 0) {
       _timers.add({
         'minute': _m,
         'second': _s,
