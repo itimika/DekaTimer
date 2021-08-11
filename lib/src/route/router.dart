@@ -1,6 +1,6 @@
 import 'package:deka_timer/src/components/account/login_check.dart';
 import 'package:deka_timer/src/components/timer/add_timer_page.dart';
-import 'package:deka_timer/src/components/home.dart';
+import 'package:deka_timer/src/components/home_page.dart';
 import 'package:deka_timer/src/components/timer/set_timer_page.dart';
 import 'package:deka_timer/src/components/timer/timer_page.dart';
 import 'package:flutter/material.dart';

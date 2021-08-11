@@ -53,15 +53,15 @@ class TimerModel with ChangeNotifier {
     });
   }
 
-  setTimer() {
-    if (_h == 0 && _m == 0 && _s == 0) {
-      _time = DateTime.utc(0, 0, 0).add(
-        Duration(hours: _h, minutes: _m, seconds: _s),
-      );
+  // setTimer() {
+  //   if (_h == 0 && _m == 0 && _s == 0) {
+  //     _time = DateTime.utc(0, 0, 0).add(
+  //       Duration(hours: _h, minutes: _m, seconds: _s),
+  //     );
 
-      notifyListeners();
-    }
-  }
+  //     notifyListeners();
+  //   }
+  // }
 
   resetTimer() {
     _h = 0;
