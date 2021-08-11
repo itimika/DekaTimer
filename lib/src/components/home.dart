@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:deka_timer/src/model/timer_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sprintf/sprintf.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,30 +19,35 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 1.2,
-          ),
-          itemBuilder: (BuildContext context, int index) {
-            return _gridWidget(index);
-          },
-        ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: Provider.of<TimerModel>(context).timers.snapshots(),
+        builder: (conetxt, snapshot) {
+          if (snapshot.hasData) {
+            final List<DocumentSnapshot> docs = snapshot.data!.docs;
+            return Padding(
+              padding: const EdgeInsets.all(10),
+              child: GridView.count(
+                crossAxisCount: 2,
+                children: docs.map(
+                  (doc) {
+                    return _gridWidget(doc);
+                  },
+                ).toList(),
+              ),
+            );
+          } else {
+            return const Text("can't read");
+          }
+        },
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.play_arrow),
-        // いまだけ
-        onPressed: () {
-          Provider.of<TimerModel>(context, listen: false).setTimer();
-          Navigator.pushNamed(context, '/timer');
-        },
+        onPressed: () {},
       ),
     );
   }
 
-  Widget _gridWidget(int index) {
+  Widget _gridWidget(DocumentSnapshot? doc) {
     return Padding(
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: Column(
@@ -48,11 +55,11 @@ class HomePage extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Flexible(
+              Flexible(
                 flex: 2,
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: Text("休憩時間", textAlign: TextAlign.center),
+                  child: Text(doc!['name'], textAlign: TextAlign.center),
                 ),
               ),
               Flexible(
@@ -86,13 +93,13 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
-          const Card(
+          Card(
             // decoration: BoxDecoration(
             //     color: Colors.white,
             //     border: Border.all(color: Colors.black, width: 3),
             //     borderRadius: BorderRadius.all(Radius.circular(5))),
             child: Center(
-              child: _TimeComponent(),
+              child: _TimeComponent(doc: doc),
             ),
           ),
         ],
@@ -102,15 +109,22 @@ class HomePage extends StatelessWidget {
 }
 
 class _TimeComponent extends StatelessWidget {
-  const _TimeComponent({Key? key}) : super(key: key);
+  final DocumentSnapshot? doc;
+  const _TimeComponent({Key? key, required this.doc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, '/setTimer'),
-      child: const Text(
-        "12:00",
-        style: TextStyle(fontSize: 50),
+      onTap: () {
+        Provider.of<TimerModel>(context, listen: false).startTimer(doc!);
+        Navigator.pushNamed(context, '/timer');
+      },
+      child: Text(
+        sprintf("%02i:%02i", [
+          doc!['minute'],
+          doc!['second'],
+        ]),
+        style: const TextStyle(fontSize: 50),
       ),
     );
   }

@@ -16,7 +16,7 @@ class TimerPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: Provider.of<TimerModel>(context, listen: false).startTimer,
+        onPressed: () {},
       ),
     );
   }

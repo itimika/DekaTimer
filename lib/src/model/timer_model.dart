@@ -17,6 +17,7 @@ class TimerModel with ChangeNotifier {
   get h => _h;
   get m => _m;
   get s => _s;
+  CollectionReference get timers => _timers;
 
   String timerStr() => DateFormat('mm:ss').format(_time);
 
@@ -69,7 +70,9 @@ class TimerModel with ChangeNotifier {
     notifyListeners();
   }
 
-  startTimer() {
+  startTimer(DocumentSnapshot doc) {
+    _time = DateTime.utc(0, 0, 0).add(
+        Duration(hours: _h, minutes: doc['minute'], seconds: doc['second']));
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       _time = _time.add(const Duration(seconds: -1));
       notifyListeners();
