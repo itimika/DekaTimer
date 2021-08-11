@@ -1,5 +1,6 @@
 import 'package:deka_timer/src/model/timer_model.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:numberpicker/numberpicker.dart';
 import 'package:provider/provider.dart';
 
@@ -19,6 +20,10 @@ class AddTimerPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _MinutePicker(),
+              const Text(
+                ':',
+                style: TextStyle(fontSize: 50),
+              ),
               _SecondPicker(),
             ],
           ),
@@ -34,8 +39,16 @@ class AddTimerPage extends StatelessWidget {
                 child: const Text('RESET'),
               ),
               ElevatedButton(
-                onPressed:
-                    Provider.of<TimerModel>(context, listen: false).addTimer,
+                onPressed: () {
+                  bool isSuccess =
+                      Provider.of<TimerModel>(context, listen: false)
+                          .addTimer();
+                  if (!isSuccess) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('時間を設定してください!')),
+                    );
+                  }
+                },
                 child: const Text('CREATE'),
               ),
             ],

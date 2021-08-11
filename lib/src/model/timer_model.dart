@@ -44,13 +44,18 @@ class TimerModel with ChangeNotifier {
     notifyListeners();
   }
 
-  addTimer() {
-    _timers.add({
-      'minute': _m,
-      'second': _s,
-      'background_color': '',
-      'font_color': '',
-    });
+  bool addTimer() {
+    if (_m != 0 && _s != 0) {
+      _timers.add({
+        'minute': _m,
+        'second': _s,
+        'background_color': '',
+        'font_color': '',
+      });
+      return true;
+    } else {
+      return false;
+    }
   }
 
   // setTimer() {

@@ -9,9 +9,10 @@ class DbProcess extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance!.addPostFrameCallback(
-      (_) => Provider.of<TimerModel>(context, listen: false).readTimers(id!),
-    );
+    // WidgetsBinding.instance!.addPostFrameCallback(
+    //   (_) => ,
+    // );
+    Provider.of<TimerModel>(context, listen: false).readTimers(id!);
     return const HomePage();
   }
 }
