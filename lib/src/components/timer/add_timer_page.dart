@@ -18,8 +18,8 @@ class AddTimerPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _MinutesPicker(),
-              _SecondsPicker(),
+              _MinutePicker(),
+              _SecondPicker(),
             ],
           ),
           Row(
@@ -35,8 +35,8 @@ class AddTimerPage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed:
-                    Provider.of<TimerModel>(context, listen: false).setTimer,
-                child: const Text('SUBMIT'),
+                    Provider.of<TimerModel>(context, listen: false).addTimer,
+                child: const Text('CREATE'),
               ),
             ],
           )
@@ -46,7 +46,7 @@ class AddTimerPage extends StatelessWidget {
   }
 }
 
-class _MinutesPicker extends StatelessWidget {
+class _MinutePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NumberPicker(
@@ -64,7 +64,7 @@ class _MinutesPicker extends StatelessWidget {
   }
 }
 
-class _SecondsPicker extends StatelessWidget {
+class _SecondPicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NumberPicker(

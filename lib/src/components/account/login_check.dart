@@ -1,4 +1,5 @@
 import 'package:deka_timer/src/components/home.dart';
+import 'package:deka_timer/src/model/timer_model.dart';
 import 'package:deka_timer/src/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,8 @@ class LoginCheck extends StatelessWidget {
               ),
             );
           case Status.authenticated:
+            Provider.of<TimerModel>(context, listen: false)
+                .readTimers(user.id());
             return const HomePage();
         }
       },

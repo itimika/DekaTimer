@@ -11,6 +11,8 @@ class UserModel with ChangeNotifier {
     _auth!.authStateChanges().listen(_onAuthStateChanged);
   }
 
+  String id() => _user!.uid;
+
   User get user => _user!;
   FirebaseAuth get auth => _auth!;
   Status get status => _status;
