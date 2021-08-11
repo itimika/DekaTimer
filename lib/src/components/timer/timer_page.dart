@@ -7,8 +7,6 @@ class TimerPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance!.addPostFrameCallback(
-        (_) => Provider.of<TimerModel>(context, listen: false).startTimer);
     return Scaffold(
       body: Container(
         color: Colors.blue,

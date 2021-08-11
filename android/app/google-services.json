@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "982701838147",
+    "project_id": "dekatimer",
+    "storage_bucket": "dekatimer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982701838147:android:1252359f39187dd035a9f6",
+        "android_client_info": {
+          "package_name": "com.example.deka_timer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982701838147-9di0os4ju50shlovh6c3lpjf8dd7n7m6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMGb1GznAXynJjq0dQ7W_DhFYDyjAKSvQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982701838147-9di0os4ju50shlovh6c3lpjf8dd7n7m6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

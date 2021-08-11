@@ -52,7 +52,7 @@ class _MinutesPicker extends StatelessWidget {
     return NumberPicker(
       selectedTextStyle:
           TextStyle(color: Theme.of(context).indicatorColor, fontSize: 50),
-      textStyle: TextStyle(fontSize: 20),
+      textStyle: const TextStyle(fontSize: 20),
       infiniteLoop: true,
       zeroPad: true,
       minValue: 0,
@@ -70,7 +70,7 @@ class _SecondsPicker extends StatelessWidget {
     return NumberPicker(
       selectedTextStyle:
           TextStyle(color: Theme.of(context).indicatorColor, fontSize: 50),
-      textStyle: TextStyle(fontSize: 20),
+      textStyle: const TextStyle(fontSize: 20),
       infiniteLoop: true,
       zeroPad: true,
       minValue: 0,
