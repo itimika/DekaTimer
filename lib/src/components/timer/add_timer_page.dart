@@ -19,12 +19,22 @@ class AddTimerPage extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              OutlinedButton(
+                onPressed: Provider.of<TimerModel>(context, listen: false)
+                    .change5Minutes,
+                child: const Text('+5'),
+              ),
               _MinutePicker(),
               const Text(
                 ':',
                 style: TextStyle(fontSize: 50),
               ),
               _SecondPicker(),
+              OutlinedButton(
+                onPressed: Provider.of<TimerModel>(context, listen: false)
+                    .change5Seconds,
+                child: const Text('+5'),
+              ),
             ],
           ),
           Row(
@@ -52,7 +62,7 @@ class AddTimerPage extends StatelessWidget {
                 child: const Text('CREATE'),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -69,7 +79,7 @@ class _MinutePicker extends StatelessWidget {
       infiniteLoop: true,
       zeroPad: true,
       minValue: 0,
-      maxValue: 59,
+      maxValue: maxMin,
       value: Provider.of<TimerModel>(context).m,
       onChanged: (value) =>
           Provider.of<TimerModel>(context, listen: false).changeMinutes(value),
@@ -87,7 +97,7 @@ class _SecondPicker extends StatelessWidget {
       infiniteLoop: true,
       zeroPad: true,
       minValue: 0,
-      maxValue: 59,
+      maxValue: maxSec,
       value: Provider.of<TimerModel>(context).s,
       onChanged: (value) =>
           Provider.of<TimerModel>(context, listen: false).changeSeconds(value),

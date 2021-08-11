@@ -4,6 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+const maxMin = 59;
+const maxSec = 59;
+
 class TimerModel with ChangeNotifier {
   late Timer _timer;
   late DateTime _time;
@@ -22,7 +25,7 @@ class TimerModel with ChangeNotifier {
 
   String timerStr() => DateFormat('mm:ss').format(_time);
 
-  changeHour(val) {
+  changeHours(val) {
     _h = val;
     notifyListeners();
   }
@@ -34,6 +37,22 @@ class TimerModel with ChangeNotifier {
 
   changeSeconds(val) {
     _s = val;
+    notifyListeners();
+  }
+
+  change5Minutes() {
+    _m += 5;
+    if (maxMin < _m) {
+      _m -= 60;
+    }
+    notifyListeners();
+  }
+
+  change5Seconds() {
+    _s += 5;
+    if (maxSec < _s) {
+      _s -= 60;
+    }
     notifyListeners();
   }
 
