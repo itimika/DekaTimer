@@ -1,6 +1,4 @@
-import 'package:deka_timer/src/components/home_page.dart';
 import 'package:deka_timer/src/components/timer/db_process.dart';
-import 'package:deka_timer/src/model/timer_model.dart';
 import 'package:deka_timer/src/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

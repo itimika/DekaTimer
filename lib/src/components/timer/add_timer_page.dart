@@ -54,10 +54,11 @@ class AddTimerPage extends StatelessWidget {
                           .addTimer();
                   if (isSuccess) {
                     Navigator.pop(context);
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('時間を設定してください!')),
+                    );
                   }
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('時間を設定してください!')),
-                  );
                 },
                 child: const Text('CREATE'),
               ),
